@@ -10,7 +10,7 @@ public class MinepediaCore extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		//ceeate folder mineopedia ;:)
-			Bukkit.getServer().getPluginManager().getPlugin("Minepedia").getDataFolder().mkdir();
+		Bukkit.getServer().getPluginManager().getPlugin("Minepedia").getDataFolder().mkdir();
 		this.getCommand("getinfo").setExecutor(new GetInfo(this));
 	}
 	

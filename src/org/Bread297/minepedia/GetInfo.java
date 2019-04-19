@@ -38,10 +38,13 @@ public class GetInfo implements CommandExecutor {
 		int status = HttpRequester.makeRequest(URL);
 		if(status == 1) {
 			player.sendMessage(ChatColor.RED + "Https Request failed! MalformedUrlException!!");
+			return;
 		}
 		if(status == 2) {
 			player.sendMessage(ChatColor.RED + "Https Request failed! InputOutputException!!");
+			return;
 		}
+		HTMLParser.getSearchResults();
 		return;
 	}
 

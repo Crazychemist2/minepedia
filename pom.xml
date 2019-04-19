@@ -14,6 +14,68 @@
           <target>1.8</target>
         </configuration>
       </plugin>
+       <plugin>
+         <artifactId>maven-jar-plugin</artifactId>
+         <configuration>
+           <archive>
+             <manifest>
+               <addClasspath>true</addClasspath>
+               <classpathPrefix>lib/</classpathPrefix>
+               <mainClass>org.Bread297.minepedia.MinepediaCore</mainClass>
+             </manifest>
+           </archive>
+         </configuration>
+</plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.1</version>
+        <executions>
+          <execution>
+            <id>copy-dependencies</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/lib</outputDirectory>
+              <overWriteReleases>false</overWriteReleases>
+              <overWriteSnapshots>false</overWriteSnapshots>
+              <overWriteIfNewer>true</overWriteIfNewer>
+            </configuration>
+          </execution>
+        </executions>
+	</plugin>
+	<plugin>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.8</version>
+            <executions>
+                <execution>
+                    <id>copy</id>
+                    <phase>package</phase>
+                    <configuration>
+                        <target>
+	<!-- OPTIONAL -> CHANGE **PATH TO PLUGINS** 'todir' WITH THE FULL PATH TO THE PLGUINS FOLDER OF YOUR TEST SERVER -->              
+                            <echo>Copying Files to DevServer folder.....</echo>
+                            <!-- **PATH TO PLUGINS**  --><copy todir="C:/Users/Crazychemist/Desktop/DevServer/plugins/lib" overwrite="true" flatten="true">
+                                <fileset dir="target/lib" includes="*.jar" >
+                                    <include name="*.jar" />
+                                </fileset>
+                            </copy>
+ 
+                            <!-- **PATH TO PLUGINS**  --><copy todir="C:/Users/Crazychemist/Desktop/DevServer/plugins" overwrite="true" flatten="true">
+                                <fileset dir="target" includes="*.jar" >
+                                    <include name="Music_Plugin-preAlpha-0.1.jar" />
+                                </fileset>
+                            </copy>
+                        </target>
+                    </configuration>
+                    <goals>
+                        <goal>run</goal>
+                    </goals>
+                </execution>
+            </executions>
+</plugin>
     </plugins>
   </build>
   <!--******************************************DEPENDENCIES******************************************-->  
@@ -25,6 +87,12 @@
             <version>1.13.2-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
    		</dependency>
+<!--JSOUP Dependency 1.8.3-->
+  		<dependency>
+    		<groupId>org.jsoup</groupId>
+    		<artifactId>jsoup</artifactId>
+    		<version>1.8.3</version>
+		</dependency>
   </dependencies>
 <!--******************************************DEPENDENCIES******************************************-->
 <!--******************************************REPOSITORIES******************************************-->
