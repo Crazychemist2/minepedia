@@ -1,0 +1,8 @@
+name: Minepedia
+version: pre-alpha - 0.1
+main: org.Bread297.minepedia.MinepediaCore
+description: A simple InGame Wiki for Minecraft
+api-version: 1.13
+commands:
+  getinfo:
+    description: Fetch info from Minecraft Wiki
